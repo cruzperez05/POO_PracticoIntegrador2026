@@ -1,3 +1,7 @@
+![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)
+![BlueJ](https://img.shields.io/badge/IDE-BlueJ-blue)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+![Entrega](https://img.shields.io/badge/entrega-09%2F11-red)
 # POO_PracticoIntegrador2026
 # Gestión de Biblioteca – TP7 Integrador
 Programación Orientada a Objetos – 2026
