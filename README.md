@@ -10,7 +10,7 @@ Sistema que administra los préstamos de libros de una biblioteca
 a socios estudiantes y docentes.
 
 ## Equipo
-- **Nombre del equipo:** ...
+- **Nombre del equipo: NullPointers** ...
 - **Grupo de laboratorio: 2** ...
 
 
@@ -37,4 +37,4 @@ a socios estudiantes y docentes.
 - [ ] GestionBiblioteca
 
 ## Entrega
-Fecha límite: 09/11 – `NombreEquipo_PracticoIntegrador.zip`
+Fecha límite: 09/11 – `NullPointers_PracticoIntegrador.zip`
