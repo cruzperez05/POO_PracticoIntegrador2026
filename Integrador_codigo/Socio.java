@@ -16,9 +16,9 @@ public abstract class Socio{
 /**
      * Constructor que permite crear un objeto Socio sin una lista previa de préstamos.
      * 
-     * @param int p_dniSocio: DNI del socio.
-     * @param String p_nombre: Nombre y apellido del socio.
-     * @param int p_diasPrestamo: Cantidad de días de préstamo permitidos.
+     * @param int p_dniSocio        DNI del socio.
+     * @param String p_nombre       Nombre y apellido del socio.
+     * @param int p_diasPrestamo    Cantidad de días de préstamo permitidos.
 */
 Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo){
       this.setDniSocio(p_dniSocio);
@@ -31,10 +31,10 @@ Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo){
 /**
      * Constructor que permite crear un objeto Socio con una lista previa de préstamos.
      * 
-     * @param int p_dniSocio: DNI del socio.
-     * @param String p_nombre: Nombre y apellido del socio.
-     * @param int p_diasPrestamo: Cantidad de días de préstamo permitidos.
-     * @param ArrayList p_prestamos: Colección inicial de préstamos del socio.
+     * @param int p_dniSocio            DNI del socio.
+     * @param String p_nombre           Nombre y apellido del socio.
+     * @param int p_diasPrestamo        Cantidad de días de préstamo permitidos.
+     * @param ArrayList p_prestamos     Colección inicial de préstamos del socio.
 */
 Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo,ArrayList<Prestamo> p_prestamos){
       this.setDniSocio(p_dniSocio);
@@ -50,14 +50,14 @@ Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo,ArrayList<Prestamo> p_
   * @param int p_dniSocio.
  */
 private void setDniSocio(int p_dniSocio){
-      this.dniSocio = p_dniSocio;
+      this.dniSocio = p_dniSocio.
   }
 
   
 /**
      * Asigna p_nombre al nombre del socio.
      * 
-     * @param String p_nombre: Nombre a asignar.
+     * @param String p_nombre.
 */
 private void setNombre(String p_nombre){
       this.nombre = p_nombre;
@@ -67,7 +67,7 @@ private void setNombre(String p_nombre){
 /**
      * Asigna p_diasPrestamo a los días de préstamo permitidos.
      * 
-     * @param int p_diasPrestamo: Cantidad de días.
+     * @param int p_diasPrestamo        Cantidad de días.
 */
 private void setDiasPrestamo(int p_diasPrestamo){
       this.diasPrestamo = p_diasPrestamo;
@@ -77,7 +77,7 @@ private void setDiasPrestamo(int p_diasPrestamo){
 /**
      * Asigna p_prestamos a la lista de préstamos del socio.
      * 
-     * @param ArrayList p_prestamos: Colección de préstamos.
+     * @param ArrayList p_prestamos      Colección de préstamos.
 */
 private void setPrestamos(ArrayList<Prestamo> p_prestamos){
       this.prestamos = p_prestamos;
@@ -126,7 +126,7 @@ public ArrayList<Prestamo> getPrestamos(){
  /**
      * Agrega un nuevo préstamo a la lista de prestamos del socio.
      * 
-     * @param Prestamo p_prestamo:  Prestamo a añadir.
+     * @param Prestamo p_prestamo     Prestamo a añadir.
 */ 
 public boolean anadirPrestamo(Prestamo p_prestamo) {
             return this.getPrestamos().add(p_prestamo);
@@ -136,7 +136,7 @@ public boolean anadirPrestamo(Prestamo p_prestamo) {
 /**
      * Remueve un préstamo de la lista de prestamos del socio.
      * 
-     * @param Prestamo p_prestamo: Prestamo a quitar.
+     * @param Prestamo p_prestamo    Prestamo a quitar.
 */
 public boolean quitarPrestamo(Prestamo p_prestamo) {
             return this.getPrestamos().remove(p_prestamo);
