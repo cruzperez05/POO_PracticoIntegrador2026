@@ -12,26 +12,6 @@ Biblioteca(String p_nombre) {
 }
 
 
-Biblioteca(String p_nombre, ArrayList<Socio>p_socios) {
-        this.setNombre(p_nombre);
-        this.setSocios(p_socios);
-        this.setLibros(new ArrayList<Libro>());
-}
-
-
-Biblioteca(String p_nombre, ArrayList<Libro>p_libros) {
-        this.setNombre(p_nombre);
-        this.setSocios(new ArrayList<Socio>());
-        this.setLibros(p_libros);
-}
-
-Biblioteca(String p_nombre,ArrayList<Socio>p_socios, ArrayList<Libro>p_libros) {
-        this.setNombre(p_nombre);
-        this.setSocios(p_socios);
-        this.setLibros(p_libros);
-}
-
-
 private void setNombre(String p_nombre){
       this.nombre = p_nombre;
   }
