@@ -14,24 +14,9 @@ public  class Prestamo{
   private Socio socio;
   private Libro libro;
 
+
 /**
-     * Constructor que permite crear un objeto Préstamo que incluye la fecha de devolución, para el caso en el que el libro fue devuelto.
-     * 
-     * @param Calendar p_fechaRetiro       Fecha en la que pidio el préstamo.
-     * @param Calendar p_fechaDevolucion   Fecha en la que se devolvio el libro.
-     * @param Socio p_socio                Socio de la biblioteca que realiza el préstamo.
-     * @param Libro p_libro                Libro que fue prestado al socio.
-*/
-Prestamo(Calendar p_fechaRetiro,Calendar p_fechaDevolucion, Socio p_socio,Libro p_libro ){
-      this.setFechaRetiro(p_fechaRetiro);
-      this.registrarFechaDevolucion(p_fechaDevolucion);
-      this.setSocio(p_socio);
-      this.setLibro(p_libro);
-} 
-  
-  
-/**
-     * Constructor que permite crear un objeto Préstamo sin una fecha de devolución, para el caso en el que el libro aun no fue devuelto.
+     * Constructor que permite crear un objeto Préstamo sin una fecha de devolución.
      * 
      * @param Calendar p_fechaRetiro       Fecha en la que pidio el préstamo.
      * @param Socio p_socio                Socio de la biblioteca que pide el préstamo.
