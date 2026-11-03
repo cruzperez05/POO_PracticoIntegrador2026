@@ -149,9 +149,15 @@ public boolean quitarPrestamo(Prestamo p_prestamo) {
      * @return cantidad de libros en poder del socio.
 */    
 public int cantLibrosPrestados(){
-      return this.getPrestamos().size();
+    int contador = 0;
+    for (Prestamo unPrestamo : this.getPrestamos()) {
+        if(unPrestamo.getFechaDevolucion() == null){
+            contador++;
+        }
+    }
+      return contador;
+    
 }
- 
 
 /**
      * Devuelve una representación en formato de cadena de los datos del socio.
