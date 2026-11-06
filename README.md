@@ -26,7 +26,7 @@ a socios estudiantes y docentes.
 
 
 ## Organización
-- Trello: (link)
+- Trello: https://trello.com/b/yz2X4Wa5/tp7gruponullpointers
 
 ## Estado
 - [ ] Socio / Prestamo
