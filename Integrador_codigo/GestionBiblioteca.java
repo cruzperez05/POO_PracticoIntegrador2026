@@ -62,7 +62,31 @@ public class GestionBiblioteca {
             System.out.println(e.getMessage());
         }
         
-        
+                // ===== DOCENTES Y ESTUDIANTES =====
+        System.out.println("\n===== Docentes y Estudiantes =====");
+
+        // Docente con préstamo vencido (5 días de plazo, retiró hace 10)
+        Calendar hace10Dias = Calendar.getInstance();
+        hace10Dias.add(Calendar.DAY_OF_MONTH, -10);
+        biblioteca.prestarLibro(hace10Dias, juanFernandez, JavaComoProgramar);
+
+        // Estudiante con préstamo vencido (20 días de plazo, retiró hace 25)
+        Calendar hace25Dias = Calendar.getInstance();
+        hace25Dias.add(Calendar.DAY_OF_MONTH, -25);
+        biblioteca.prestarLibro(hace25Dias, franciscoPaenza, Logman);
+
+        // Premio a una docente responsable
+        Docente alegre = (Docente) mariaAlegre;
+        alegre.cambiarDiasDePrestamo(2);
+
+        // Polimorfismo: el mismo mensaje, cada tipo de socio responde distinto
+        Socio[] socios = { juanFernandez, mariaAlegre, franciscoPaenza, cesarMilstein };
+        for (Socio s : socios) {
+            System.out.println(s.getNombre() + " (" + s.soyDeLaClase() + ") puede pedir: " + s.puedePedir());
+        }
+
+        // Docentes que nunca adeudaron no debería aparecer Juan Fernández
+        System.out.println(biblioteca.listaDeDocentesResponsables());
         
         
         
