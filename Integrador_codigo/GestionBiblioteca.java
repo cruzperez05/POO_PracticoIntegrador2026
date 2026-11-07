@@ -33,6 +33,18 @@ public class GestionBiblioteca {
         
         Calendar fechaPrestasmo = Calendar.getInstance();  
         biblioteca.prestarLibro(fechaPrestasmo, juanPerez, ProgramandoConJava);
+
+        Calendar fechaHaceTresDias = Calendar.getInstance();  
+        fechaHaceTresDias.add(Calendar.DAY_OF_MONTH, -3);
+        biblioteca.prestarLibro(fechaHaceTresDias,mariaAlegre, Logman);
+
+         // Uno de los socios devuelve un libro dentro del plazo establecido.
+        try {
+             biblioteca.devolverLibro(Logman);
+             System.out.println("El socio "+Logman.ultimoPrestamo().getSocio().getNombre()+" devuelve el libro "+Logman.getTitulo());
+            } catch (LibroNoPrestadoException e) {
+                         System.out.println(e.getMessage());
+              }
         
         // Cuantos Socios de tipo Estudiante Hay?
         System.out.println("Cantidad de Socios de tipo Estudiantes: " +biblioteca.cantidadDeSociosPorTipo("Estudiante"));
