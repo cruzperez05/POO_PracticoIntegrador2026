@@ -7,9 +7,9 @@ public class GestionBiblioteca {
         Biblioteca biblioteca = new Biblioteca("Biblioteca Central");
         
         biblioteca.nuevoLibro("JAVA. Como Programar", 1, "Pearson", 2012);
-        biblioteca.nuevoLibro("Programando con JAVA", 2, "Alfaomega", 2015);
         biblioteca.nuevoLibro("Longman. Diccionario Pocket", 3, "Longman", 2010);
         biblioteca.nuevoLibro("Vivir para contarla", 1, "Sudamericana", 2002);
+        biblioteca.nuevoLibro("Programando con JAVA", 2, "Alfaomega", 2015); 
 
 
         biblioteca.nuevoSocioDocente(14524782, "Juan Perez", "Programacion");
