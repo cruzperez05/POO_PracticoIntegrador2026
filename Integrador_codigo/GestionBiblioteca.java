@@ -25,7 +25,31 @@ public class GestionBiblioteca {
         Socio franciscoPaenza = biblioteca.buscarSocio(28987498);
         Socio cesarMilstein = biblioteca.buscarSocio(31987123);
         
- 
+        Libro JavaComoProgramar = biblioteca.getLibros().get(0);
+        Libro Logman = biblioteca.getLibros().get(1);
+        Libro Vivir = biblioteca.getLibros().get(2);
+        Libro ProgramandoConJava = biblioteca.getLibros().get(3);
+        
+        
+        Calendar fechaPrestasmo = Calendar.getInstance();  
+        biblioteca.prestarLibro(fechaPrestasmo, juanPerez, ProgramandoConJava);
+        
+        // Cuantos Socios de tipo Estudiante Hay?
+        System.out.println("Cantidad de Socios de tipo Estudiantes: " +biblioteca.cantidadDeSociosPorTipo("Estudiante"));
+        
+        // ¿Cuál es la lista de docentes que nunca han adeudado ni adeudan libros? 
+        System.out.println("Lista de Docentes Responsables: " + biblioteca.listaDeDocentesResponsables());
+        
+        //¿Cuál es la lista de libros? ¿Y la de socios? 
+        System.out.println("Lista de Libros: " + biblioteca.listaDeLibros());
+        
+        // ¿Qué socio tiene prestado el libro “Programando con JAVA”?  
+        try{
+            System.out.println("El socio que tiene el libro *Programando con Java* es:  " + biblioteca.quienTieneElLibro(ProgramandoConJava));}
+        catch(LibroNoPrestadoException e){
+            System.out.println(e.getMessage());
+        }
+        
         
         
         
