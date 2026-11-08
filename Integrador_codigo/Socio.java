@@ -50,7 +50,7 @@ Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo,ArrayList<Prestamo> p_
   * @param int p_dniSocio.
  */
 private void setDniSocio(int p_dniSocio){
-      this.dniSocio = p_dniSocio.
+      this.dniSocio = p_dniSocio;
   }
 
   
@@ -69,7 +69,7 @@ private void setNombre(String p_nombre){
      * 
      * @param int p_diasPrestamo        Cantidad de días.
 */
-private void setDiasPrestamo(int p_diasPrestamo){
+protected void setDiasPrestamo(int p_diasPrestamo){
       this.diasPrestamo = p_diasPrestamo;
   }
 
