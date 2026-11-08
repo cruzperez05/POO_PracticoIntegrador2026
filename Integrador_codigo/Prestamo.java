@@ -2,11 +2,11 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 /**
- * Representa el préstamo de un libro a un socio de la biblioteca.
+ * Representa el prestamo de un libro a un socio de la biblioteca.
  * 
  * @author Zarate Arturo Alan.
  * 
- * @version 1.0
+ * @version 2026
  */
 public  class Prestamo{
   private Calendar fechaRetiro; 
@@ -16,10 +16,10 @@ public  class Prestamo{
 
 
 /**
-     * Constructor que permite crear un objeto Préstamo sin una fecha de devolución.
+     * Constructor que permite crear un objeto Prestamo.
      * 
-     * @param Calendar p_fechaRetiro       Fecha en la que pidio el préstamo.
-     * @param Socio p_socio                Socio de la biblioteca que pide el préstamo.
+     * @param Calendar p_fechaRetiro       Fecha en la que pidio el prestamo.
+     * @param Socio p_socio                Socio de la biblioteca que pide el prestamo.
      * @param Libro p_libro                Libro que fue prestado al socio .
 */  
 Prestamo(Calendar p_fechaRetiro,Socio p_socio,Libro p_libro ){
@@ -30,7 +30,7 @@ Prestamo(Calendar p_fechaRetiro,Socio p_socio,Libro p_libro ){
    
 
 /**
-  * Asigna p_fechaRetiro a la fecha en la que pidio el préstamo.
+  * Asigna p_fechaRetiro a la fecha en la que pidio el prestamo.
   *
   * @param Calendar p_fechaRetiro       Fecha de retiro del libro.
  */
@@ -40,9 +40,9 @@ private void setFechaRetiro(Calendar p_fechaRetiro){
 
   
 /**
-  * Asigna p_socio al socio de la biblioteca que pidio el préstamo.
+  * Asigna p_socio al socio de la biblioteca que pidio el prestamo.
   *
-  * @param Socio p_socio      Socio que pide el préstamo .
+  * @param Socio p_socio      Socio que pide el prestamo.
  */  
 private void setSocio(Socio p_socio){
       this.socio = p_socio;
@@ -60,7 +60,7 @@ private void setLibro(Libro p_libro){
   
   
 /**
-    * Retorna la fecha  en la que se pidio el préstamo.
+    * Retorna la fecha  en la que se pidio el prestamo.
     * 
     * @return  fecha de retiro.
 */ 
@@ -69,9 +69,9 @@ public Calendar getFechaRetiro(){
 }
   
 /**
-     * Retorna la fecha en la que se devolvió el libro.
+     * Retorna la fecha en la que se devolvio el libro.
      * 
-     * @return fecha de devolución, o null si aún está pendiente.
+     * @return fecha de devolucion, o null si aun esta pendiente.
 */  
 public Calendar getFechaDevolucion(){
       return this.fechaDevolucion;
@@ -79,7 +79,7 @@ public Calendar getFechaDevolucion(){
 
 
 /**
-     * Retorna el socio que realizó el préstamo.
+     * Retorna el socio que realizo el prestamo.
      * 
      * @return socio de la biblioteca.
 */  
@@ -98,11 +98,11 @@ public Libro getLibro(){
 }
   
 /**
-     * Registra o actualiza la fecha de devolución del préstamo.
+     * Registra o actualiza la fecha de devolucion del prestamo.
      * 
      * Solo se usa una vez que el libro fue devuelto.
      * 
-     * @param Calendar p_fecha     Fecha de devolución.
+     * @param Calendar p_fecha     Fecha de devolucion.
 */  
 public void registrarFechaDevolucion(Calendar p_fecha) {
     this.fechaDevolucion = p_fecha;
@@ -110,11 +110,11 @@ public void registrarFechaDevolucion(Calendar p_fecha) {
 
 
 /**
-     * Verifica si el préstamo se encuentra vencido respecto a una fecha pasada como parametro.
+     * Verifica si el prestamo se encuentra vencido respecto a una fecha pasada como parametro.
      * 
-     * La verificacion se realiza sumandole a la fecha de retiro los días de préstamo permitidos del socio y con eso obtenemos
+     * La verificacion se realiza sumandole a la fecha de retiro los días de prestamo permitidos del socio y con eso obtenemos
      * la fecha de vencimiento.
-     * Luego controlar si la fecha pasada como parametro es mayor que dicha fecha de vencimiento.
+     * Luego se controla si la fecha pasada como parametro es mayor que dicha fecha de vencimiento.
      *
      * @param Calendar p_fecha     Fecha con la cual se desea comprobar el vencimiento.
      * 
@@ -131,9 +131,9 @@ public boolean vencido(Calendar p_fecha) {
 
 
 /**
-     * Devuelve una representación en forma de cadena de los detalles del préstamo.
+     * Devuelve una representacion en forma de cadena de los detalles del prestamo.
      * 
-     * @return String con fecha de retiro, fecha de devolución, título del libro y nombre del socio.
+     * @return String con fecha de retiro, fecha de devolucion, título del libro y nombre del socio.
 */
 public String toString() {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
