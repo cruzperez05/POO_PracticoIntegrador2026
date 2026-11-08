@@ -14,11 +14,11 @@ public abstract class Socio{
 
   
 /**
-     * Constructor que permite crear un objeto Socio sin una lista previa de préstamos.
+     * Constructor que permite crear un objeto Socio sin una lista previa de prestamos.
      * 
      * @param int p_dniSocio        DNI del socio.
      * @param String p_nombre       Nombre y apellido del socio.
-     * @param int p_diasPrestamo    Cantidad de días de préstamo permitidos.
+     * @param int p_diasPrestamo    Cantidad de días de prestamo permitidos.
 */
 Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo){
       this.setDniSocio(p_dniSocio);
@@ -29,12 +29,12 @@ Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo){
 
   
 /**
-     * Constructor que permite crear un objeto Socio con una lista previa de préstamos.
+     * Constructor que permite crear un objeto Socio con una lista previa de prestamos.
      * 
      * @param int p_dniSocio            DNI del socio.
      * @param String p_nombre           Nombre y apellido del socio.
-     * @param int p_diasPrestamo        Cantidad de días de préstamo permitidos.
-     * @param ArrayList p_prestamos     Colección inicial de préstamos del socio.
+     * @param int p_diasPrestamo        Cantidad de días de prestamo permitidos.
+     * @param ArrayList p_prestamos     Coleccion inicial de prestamos del socio.
 */
 Socio(int p_dniSocio, String p_nombre, int p_diasPrestamo,ArrayList<Prestamo> p_prestamos){
       this.setDniSocio(p_dniSocio);
@@ -65,7 +65,7 @@ private void setNombre(String p_nombre){
 
   
 /**
-     * Asigna p_diasPrestamo a los días de préstamo permitidos.
+     * Asigna p_diasPrestamo a los días de prestamo permitidos.
      * 
      * @param int p_diasPrestamo        Cantidad de días.
 */
@@ -75,9 +75,9 @@ protected void setDiasPrestamo(int p_diasPrestamo){
 
   
 /**
-     * Asigna p_prestamos a la lista de préstamos del socio.
+     * Asigna p_prestamos a la lista de prestamos del socio.
      * 
-     * @param ArrayList p_prestamos      Colección de préstamos.
+     * @param ArrayList p_prestamos      Coleccion de prestamos.
 */
 private void setPrestamos(ArrayList<Prestamo> p_prestamos){
       this.prestamos = p_prestamos;
@@ -105,9 +105,9 @@ public String getNombre(){
 
 
 /**
-     * Retorna los días de un préstamo permitido para el socio.
+     * Retorna los dias de un prestamo permitido para el socio.
      * 
-     * @return días de préstamo.
+     * @return días de prestamo.
 */  
 public int getDiasPrestamo(){
       return this.diasPrestamo;
@@ -115,7 +115,7 @@ public int getDiasPrestamo(){
 
 
 /**
-     * Retorna la colección completa de préstamos asociados al socio.
+     * Retorna la coleccion completa de prestamos asociados al socio.
      * 
      * @return un ArrayList de objetos Prestamo.
 */  
@@ -124,7 +124,7 @@ public ArrayList<Prestamo> getPrestamos(){
 }
   
  /**
-     * Agrega un nuevo préstamo a la lista de prestamos del socio.
+     * Agrega un nuevo prestamo a la lista de prestamos del socio.
      * 
      * @param Prestamo p_prestamo     Prestamo a añadir.
 */ 
@@ -134,7 +134,7 @@ public boolean anadirPrestamo(Prestamo p_prestamo) {
 
     
 /**
-     * Remueve un préstamo de la lista de prestamos del socio.
+     * Remueve un prestamo de la lista de prestamos del socio.
      * 
      * @param Prestamo p_prestamo    Prestamo a quitar.
 */
@@ -160,7 +160,7 @@ public int cantLibrosPrestados(){
 }
 
 /**
-     * Devuelve una representación en formato de cadena de los datos del socio.
+     * Devuelve una representacion en formato de cadena de los datos del socio.
      * 
      * @return String conformado con los datos del socio y cantidad de libros prestados.
 */ 
@@ -171,9 +171,9 @@ public String toString(){
   
 
 /**
-     * Evalúa si el socio puede solicitar un nuevo préstamo. 
+     * Evalua si el socio puede solicitar un nuevo prestamo. 
      * 
-     * Devuelve true si el socio no tiene ningún préstamo activo y vencido.
+     * Devuelve true si el socio no tiene ningun prestamo activo y vencido.
      * 
      * @return true si no posee deudas de tiempo activas, false en caso contrario.
 */
@@ -190,7 +190,7 @@ public boolean puedePedir() {
 
     
 /**
-     * Método abstracto que retorna el tipo específico de socio.
+     * Metodo abstracto que retorna el tipo específico de socio.
      * 
      * @return un String indicando el tipo de socio.
  */
@@ -198,4 +198,4 @@ public abstract String soyDeLaClase();
   
 
 }
- .
+ 
