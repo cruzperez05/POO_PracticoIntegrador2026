@@ -5,7 +5,8 @@ import java.util.Calendar;
 
 /**
  * Interfaz gráfica (Swing) para la Gestión de Biblioteca.
- * La ventana solo pide y muestra datos: la lógica queda en las clases del diseño.
+ * La ventana solo pide y muestra datos: la lógica queda en las clases del diseño
+ * y los cambios se sincronizan con la Base de Datos en SQL Server.
  */
 public class VentanaBiblioteca extends JFrame implements ActionListener {
 
@@ -13,6 +14,8 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
 
     // Campos de texto
     private JTextField tfDni;
+    private JTextField tfNombre;
+    private JTextField tfExtra;      // área (docente) o carrera (estudiante)
     private JTextField tfTitulo;
 
     // Zona de resultados
@@ -25,12 +28,15 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
     private JButton bPuedePedir;
     private JButton bVerSocios;
     private JButton bVerLibros;
+    private JButton bNuevoDocente;
+    private JButton bNuevoEstudiante;
+    private JButton bQuitarSocio;
 
     public VentanaBiblioteca(Biblioteca p_biblioteca) {
         this.biblioteca = p_biblioteca;
 
-        this.setTitle("Gestión de Biblioteca - " + biblioteca.getNombre());
-        this.setSize(700, 450);
+        this.setTitle("Gestión de Biblioteca - " + biblioteca.getNombre() + " (Conectado a SQL Server)");
+        this.setSize(750, 500);
         this.addWindowListener(new ManejadorCierre());
 
         // Un panel principal con BorderLayout, agregado al contenedor de la ventana
@@ -39,17 +45,17 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         Container miPanelContenedor = this.getContentPane();
         miPanelContenedor.add(miPanel);
 
-       //campos de texto
+        // campos de texto arriba
         miPanel.add(this.crearPanelCampos(), BorderLayout.NORTH);
 
-       //resultados, con scroll
+        // resultados en el centro, con scroll
         salida = new JTextArea();
         salida.setEditable(false);
         salida.setFont(new Font("Monospaced", Font.PLAIN, 13));
         JScrollPane scroll = new JScrollPane(salida);
         miPanel.add(scroll, BorderLayout.CENTER);
 
-        // botones
+        // botones abajo
         miPanel.add(this.crearPanelBotones(), BorderLayout.SOUTH);
     }
 
@@ -57,13 +63,19 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
 
     private JPanel crearPanelCampos() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2, 2, 5, 5));
+        panel.setLayout(new GridLayout(4, 2, 5, 5));
 
         tfDni = new JTextField(15);
+        tfNombre = new JTextField(15);
+        tfExtra = new JTextField(15);
         tfTitulo = new JTextField(15);
 
         panel.add(new JLabel("DNI del socio:"));
         panel.add(tfDni);
+        panel.add(new JLabel("Nombre y apellido (para alta):"));
+        panel.add(tfNombre);
+        panel.add(new JLabel("Área / Carrera (para alta):"));
+        panel.add(tfExtra);
         panel.add(new JLabel("Título del libro:"));
         panel.add(tfTitulo);
 
@@ -72,7 +84,7 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
 
     private JPanel crearPanelBotones() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2, 3, 5, 5));
+        panel.setLayout(new GridLayout(3, 3, 5, 5));
 
         bPrestar = this.crearBoton("Prestar libro");
         bDevolver = this.crearBoton("Devolver libro");
@@ -80,6 +92,9 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         bPuedePedir = this.crearBoton("¿Puede pedir el socio?");
         bVerSocios = this.crearBoton("Ver socios");
         bVerLibros = this.crearBoton("Ver libros");
+        bNuevoDocente = this.crearBoton("Agregar socio docente");
+        bNuevoEstudiante = this.crearBoton("Agregar socio estudiante");
+        bQuitarSocio = this.crearBoton("Quitar socio");
 
         panel.add(bPrestar);
         panel.add(bDevolver);
@@ -87,6 +102,9 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         panel.add(bPuedePedir);
         panel.add(bVerSocios);
         panel.add(bVerLibros);
+        panel.add(bNuevoDocente);
+        panel.add(bNuevoEstudiante);
+        panel.add(bQuitarSocio);
 
         return panel;
     }
@@ -121,6 +139,15 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         if (fuente == bVerLibros) {
             salida.setText(biblioteca.listaDeLibros());
         }
+        if (fuente == bNuevoDocente) {
+            this.agregarDocente();
+        }
+        if (fuente == bNuevoEstudiante) {
+            this.agregarEstudiante();
+        }
+        if (fuente == bQuitarSocio) {
+            this.quitarSocio();
+        }
     }
 
     // ---------- Acciones ----------
@@ -133,7 +160,8 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         }
         boolean seConcreto = biblioteca.prestarLibro(Calendar.getInstance(), socio, libro);
         if (seConcreto) {
-            salida.setText("Préstamo realizado:\n" + libro.getTitulo() + " -> " + socio.getNombre());
+            ConexionSQLServer.guardarEnSQLServer(biblioteca);
+            salida.setText("Préstamo realizado y guardado en SQL Server:\n" + libro.getTitulo() + " -> " + socio.getNombre());
         } else {
             salida.setText("No se pudo prestar. El socio no puede pedir "
                     + "(préstamos vencidos o límite de libros) o el libro ya está prestado.");
@@ -147,7 +175,8 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
         }
         try {
             biblioteca.devolverLibro(libro);
-            salida.setText("Libro devuelto: " + libro.getTitulo());
+            ConexionSQLServer.guardarEnSQLServer(biblioteca);
+            salida.setText("Libro devuelto y actualizado en SQL Server: " + libro.getTitulo());
         } catch (LibroNoPrestadoException ex) {
             salida.setText(ex.getMessage());
         }
@@ -178,6 +207,73 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
             respuesta = "NO";
         }
         salida.setText(socio.getNombre() + " (" + socio.soyDeLaClase() + ") puede pedir: " + respuesta);
+    }
+
+    // ---------- Alta y Baja de Socios ----------
+
+    private void agregarDocente() {
+        try {
+            int dni = Integer.parseInt(tfDni.getText().trim());
+            String nombre = tfNombre.getText().trim();
+            String area = tfExtra.getText().trim();
+            if (nombre.isEmpty() || area.isEmpty()) {
+                salida.setText("Complete DNI, Nombre y apellido, y el Área del docente.");
+                return;
+            }
+            if (biblioteca.buscarSocio(dni) != null) {
+                salida.setText("Ya existe un socio con el DNI " + dni);
+                return;
+            }
+            biblioteca.nuevoSocioDocente(dni, nombre, area);
+            ConexionSQLServer.guardarEnSQLServer(biblioteca);
+            salida.setText("Docente agregado y guardado en SQL Server:\n" + biblioteca.buscarSocio(dni));
+        } catch (NumberFormatException ex) {
+            salida.setText("El DNI debe ser un número.");
+        }
+    }
+
+    private void agregarEstudiante() {
+        try {
+            int dni = Integer.parseInt(tfDni.getText().trim());
+            String nombre = tfNombre.getText().trim();
+            String carrera = tfExtra.getText().trim();
+            if (nombre.isEmpty() || carrera.isEmpty()) {
+                salida.setText("Complete DNI, Nombre y apellido, y la Carrera del estudiante.");
+                return;
+            }
+            if (biblioteca.buscarSocio(dni) != null) {
+                salida.setText("Ya existe un socio con el DNI " + dni);
+                return;
+            }
+            biblioteca.nuevoSocioEstudiante(dni, nombre, carrera);
+            ConexionSQLServer.guardarEnSQLServer(biblioteca);
+            salida.setText("Estudiante agregado y guardado en SQL Server:\n" + biblioteca.buscarSocio(dni));
+        } catch (NumberFormatException ex) {
+            salida.setText("El DNI debe ser un número.");
+        }
+    }
+
+    private void quitarSocio() {
+        Socio socio = this.buscarSocioIngresado();
+        if (socio == null) {
+            return;
+        }
+        if (socio.cantLibrosPrestados() > 0) {
+            salida.setText("No se puede quitar al socio " + socio.getNombre()
+                    + " porque todavía tiene " + socio.cantLibrosPrestados() + " libro(s) sin devolver.");
+            return;
+        }
+        // Quitar préstamos históricos de los libros asociados a este socio para mantener consistencia en la BD
+        for (Libro l : biblioteca.getLibros()) {
+            for (int i = l.getPrestamos().size() - 1; i >= 0; i--) {
+                if (l.getPrestamos().get(i).getSocio().getDniSocio() == socio.getDniSocio()) {
+                    l.quitarPrestamo(l.getPrestamos().get(i));
+                }
+            }
+        }
+        biblioteca.quitarSocio(socio.getDniSocio());
+        ConexionSQLServer.guardarEnSQLServer(biblioteca);
+        salida.setText("Socio eliminado correctamente (también en SQL Server):\n" + socio.getNombre() + " (DNI: " + socio.getDniSocio() + ")");
     }
 
     // ---------- Búsquedas auxiliares ----------
@@ -229,6 +325,7 @@ public class VentanaBiblioteca extends JFrame implements ActionListener {
 
     private class ManejadorCierre extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
+            ConexionSQLServer.guardarEnSQLServer(biblioteca);
             System.exit(0);
         }
     }

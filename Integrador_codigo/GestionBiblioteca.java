@@ -50,10 +50,11 @@ public class GestionBiblioteca {
         System.out.println("Cantidad de Socios de tipo Estudiantes: " +biblioteca.cantidadDeSociosPorTipo("Estudiante"));
         
         // ¿Cuál es la lista de docentes que nunca han adeudado ni adeudan libros? 
-        System.out.println("Lista de Docentes Responsables: " + biblioteca.listaDeDocentesResponsables());
+        System.out.println("Lista de Docentes Responsables: \n" + biblioteca.listaDeDocentesResponsables());
         
         //¿Cuál es la lista de libros? ¿Y la de socios? 
-        System.out.println("Lista de Libros: " + biblioteca.listaDeLibros());
+        System.out.println("Lista de Libros: \n" + biblioteca.listaDeLibros());
+        System.out.println(biblioteca.listaDeSocios());
         
         // ¿Qué socio tiene prestado el libro “Programando con JAVA”?  
         try{
@@ -94,13 +95,5 @@ public class GestionBiblioteca {
            System.out.println("Libro: " + unLibro.getTitulo() + " - Socio: " + unLibro.ultimoPrestamo().getSocio().getNombre());
            }
         
-        
-        
-        
-        
-        
-        
-        
-    
     }
-    }
+}

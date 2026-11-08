@@ -1,0 +1,11 @@
+# Archivos de configuración de IntelliJ IDEA
+.idea/
+*.iml
+
+# Carpetas de compilación y bytecode de Java
+out/
+*.class
+
+# Archivos de BlueJ (si se abre con BlueJ)
+*.ctxt
+package.bluej

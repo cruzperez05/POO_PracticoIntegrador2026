@@ -1,0 +1,161 @@
+================================================================================
+       GUÍA COMPLETA DE EJECUCIÓN Y DEFENSA DEL PROYECTO INTEGRADOR
+              Gestión de Biblioteca — TP7 Integrador POO 2026
+                        Equipo: NullPointers (Grupo 2)
+================================================================================
+
+
+1. ESTRUCTURA DEL PROYECTO
+--------------------------------------------------------------------------------
+Dentro de la carpeta "Integrador_codigo" se encuentran dos puntos de entrada
+(clases con método main) según lo que se quiera mostrar:
+
+  • ProcesoVentana.java    --> Abre la Interfaz Gráfica (Swing) conectada a la
+                               Base de Datos Relacional en SQL Server (BibliotecaPOO).
+  • GestionBiblioteca.java --> Ejecuta por consola el lote de pruebas automáticas
+                               pedido en la guía del Trabajo Práctico.
+
+
+================================================================================
+2. CÓMO EJECUTAR EL PROYECTO (3 FORMAS POSIBLES)
+================================================================================
+
+OPCIÓN A: DESDE INTELLIJ IDEA (Recomendado para la exposición)
+--------------------------------------------------------------------------------
+  Paso 1: Abrir IntelliJ IDEA -> hacer clic en "Open" y elegir la carpeta:
+          POO_PracticoIntegrador2026\Integrador_codigo
+          (Si abriste la carpeta raíz POO_PracticoIntegrador2026, hacé clic
+          derecho sobre la carpeta "Integrador_codigo" -> "Mark Directory as"
+          -> "Sources Root").
+
+  Paso 2: Para abrir la VENTANA GRÁFICA con SQL Server:
+          - Abrí el archivo "ProcesoVentana.java".
+          - Hacé clic en el ícono verde de Play (▶) al lado de "main" y elegí
+            "Run 'ProcesoVentana.main()'".
+
+  Paso 3: Para mostrar la SALIDA POR CONSOLA:
+          - Abrí el archivo "GestionBiblioteca.java".
+          - Hacé clic en el ícono verde de Play (▶) y elegí
+            "Run 'GestionBiblioteca.main()'".
+
+
+OPCIÓN B: DESDE BLUEJ
+--------------------------------------------------------------------------------
+  Paso 1: En BlueJ, ir a "Proyecto" -> "Abrir un proyecto que no es de BlueJ..."
+          y seleccionar la carpeta "Integrador_codigo".
+  Paso 2: Presionar el botón "Compilar" en el panel izquierdo.
+  Paso 3: Hacer clic derecho sobre la clase "ProcesoVentana" (para la interfaz
+          gráfica) o sobre "GestionBiblioteca" (para la consola) y elegir:
+          "void main(String[] args)" -> Aceptar.
+
+
+OPCIÓN C: DESDE LA TERMINAL DE WINDOWS (CMD o PowerShell)
+--------------------------------------------------------------------------------
+  Situarse en la carpeta "Integrador_codigo" y ejecutar:
+
+      javac -encoding UTF-8 *.java
+      java ProcesoVentana
+
+
+================================================================================
+3. GUÍA DE USO DE LA VENTANA GRÁFICA (PASO A PASO PARA LA EXPOSICIÓN)
+================================================================================
+
+Al ejecutar "ProcesoVentana", el sistema se conecta automáticamente al motor
+local de SQL Server (base de datos "BibliotecaPOO") y recupera los Socios,
+Libros y Préstamos almacenados.
+
+DATOS INICIALES YA CARGADOS EN SQL SERVER:
+  • Socios (Ingresar el número en "DNI del socio"):
+      - DNI 1 : Juan Perez       (Docente - Área: Programacion)
+      - DNI 2 : Juan Fernandez   (Docente - Área: Matematica)
+      - DNI 3 : Maria Alegre     (Docente - Área: Literatura)
+      - DNI 4 : Francisco Paenza (Estudiante - Carrera: Sistemas)
+      - DNI 5 : Cesar Milstein   (Estudiante - Carrera: Biologia)
+
+  • Libros (Ingresar el nombre en "Título del libro"):
+      - Java
+      - Diccionario
+      - Vivir para contarla
+      - Programando
+
+
+DEMOSTRACIÓN EN VIVO SUGERIDA FRENTE A LOS PROFESORES:
+--------------------------------------------------------------------------------
+
+  1) CONSULTAR DATOS DESDE SQL SERVER:
+     • Hacer clic en "Ver socios" -> Muestra el listado numerado de socios.
+     • Hacer clic en "Ver libros" -> Muestra los títulos y si están prestados.
+
+  2) AGREGAR UN NUEVO SOCIO (Persistencia de Alta):
+     • Escribir en "DNI del socio": 6
+     • Escribir en "Nombre y apellido": Ana Gomez
+     • Escribir en "Área / Carrera": Lic. en Sistemas
+     • Hacer clic en "Agregar socio estudiante" (o "Agregar socio docente").
+     • Tocar "Ver socios" para comprobar que ya figura en el padrón y quedó
+       insertado en la tabla "Socios" de SQL Server.
+
+  3) PRESTAR UN LIBRO Y CONSULTAR QUIÉN LO TIENE:
+     • Escribir en "DNI del socio": 1
+     • Escribir en "Título del libro": Java
+     • Hacer clic en "Prestar libro" -> Registra el préstamo y lo guarda en la
+       tabla "Prestamos" de SQL Server.
+     • Hacer clic en "¿Quién tiene el libro?" -> Responde "Juan Perez".
+
+  4) DEMOSTRAR QUE LA BASE DE DATOS GUARDA LOS CAMBIOS:
+     • Cerrar la ventana con la X.
+     • Volver a darle Play (▶) a "ProcesoVentana".
+     • Tocar "Ver libros" -> Se observa que "Java || Prestado: Sí" se mantuvo
+       guardado gracias a SQL Server.
+
+  5) DEVOLVER UN LIBRO Y MOSTRAR LA EXCEPCIÓN (LibroNoPrestadoException):
+     • Escribir en "Título del libro": Java
+     • Hacer clic en "Devolver libro" -> Registra la devolución en SQL Server.
+     • Volver a hacer clic en "Devolver libro" sobre el mismo libro "Java" ->
+       Se dispara y captura "LibroNoPrestadoException", informando en pantalla:
+       "El libro Java no se puede devolver ya que se encuentra en la biblioteca".
+
+  6) QUITAR UN SOCIO (Persistencia de Baja):
+     • Escribir en "DNI del socio": 6
+     • Hacer clic en "Quitar socio" -> Verifica que no deba libros, lo elimina
+       de la colección y lo borra de la tabla "Socios" en SQL Server.
+
+
+================================================================================
+4. ¿FUNCIONA EN OTRAS COMPUTADORAS SI NO TIENEN SQL SERVER INSTALADO? (SÍ)
+================================================================================
+
+El conector (ConexionSQLServer.java) está preparado con un sistema híbrido:
+
+  • Si la PC TIENE SQL Server instalado (con la base de datos BibliotecaPOO):
+    Lee y guarda automáticamente en las tablas relacionales de SQL Server
+    (Socios, Libros y Prestamos) y mantiene sincronizado el archivo espejo
+    "Integrador_codigo/datos_respaldo.txt".
+
+  • Si un compañero descarga el proyecto desde GitHub y NO TIENE SQL Server:
+    Puede abrirlo directamente en BlueJ o IntelliJ y ejecutar "ProcesoVentana"
+    sin instalar nada extra. Al detectar que no hay servidor SQL local, el
+    programa lee y guarda todos los cambios (préstamos, devoluciones, altas y
+    bajas de socios) en "datos_respaldo.txt" sin arrojar ningún error.
+
+
+================================================================================
+5. CÓMO VER O REINICIAR LA BASE DE DATOS EN SQL SERVER
+================================================================================
+
+• Diagrama Entidad-Relación:
+  Podés abrir la imagen "Diagrama_Entidad_Relacion.png" incluida en la carpeta
+  del proyecto para mostrar la estructura de las 3 tablas (Socios, Prestamos y
+  Libros) con sus Claves Primarias (PK) y Claves Foráneas (FK).
+
+• Para ver las tablas en SQL Server Management Studio (SSMS):
+  Conectarse al servidor "localhost" con Autenticación de Windows, desplegar la
+  base de datos "BibliotecaPOO" y consultar:
+      SELECT * FROM Socios;
+      SELECT * FROM Libros;
+      SELECT * FROM Prestamos;
+
+• Para restaurar la base de datos a su estado original antes de exponer:
+  Abrir el archivo "script_sqlserver.sql" y ejecutarlo (o correr por consola:
+  sqlcmd -S localhost -E -C -i script_sqlserver.sql).
+================================================================================

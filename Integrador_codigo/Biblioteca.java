@@ -87,6 +87,13 @@ public class Biblioteca {
     }
 
     /**
+     * Remueve un socio de la biblioteca por su DNI.
+     */
+    public Socio quitarSocio(int p_dniSocio) {
+        return this.getSocios().remove(p_dniSocio);
+    }
+
+    /**
      * Verificamos, si el solicitante no cuenta con una devolucion pendiente y si el libro se encuentra disponible
      * el prestamo se puede efectuar.
      * 
@@ -141,7 +148,7 @@ public class Biblioteca {
 
         for (Libro l : this.getLibros()) {
             Prestamo p = l.ultimoPrestamo();
-            if (p != null && p.vencido(fechaActual)) {
+            if (l.prestado() && p != null && p.vencido(fechaActual)) {
                 vencido.add(l);
             }
         }
@@ -178,7 +185,7 @@ public class Biblioteca {
 
         System.out.println("Lista de Socios");
         for(Socio s: this.getSocios().values()){
-             socio += i + ")" + s.toString() + "\n";
+             socio += i + ") " + s.toString() + "\n";
              i++;
         }
 
@@ -199,7 +206,7 @@ public class Biblioteca {
         String titulo = "";
 
         for(Libro l: this.getLibros()){
-            titulo += l.getTitulo();
+            titulo += l.getTitulo() + "\n";
         }
 
         return titulo;
@@ -209,7 +216,7 @@ public class Biblioteca {
         String lista = "";
 
         for(Libro l: this.getLibros()){
-            lista += "Titulo: " + l.getTitulo() + "Prestado: " + (l.prestado() ? "Sí" : "No") + "\n";
+            lista += "Titulo: " + l.getTitulo() + " || Prestado: " + (l.prestado() ? "Sí" : "No") + "\n";
         }
         return lista;
     }
@@ -224,4 +231,3 @@ public class Biblioteca {
         return responsable;
     }
 }
-  
