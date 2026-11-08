@@ -88,7 +88,11 @@ public class GestionBiblioteca {
         // Docentes que nunca adeudaron no debería aparecer Juan Fernández
         System.out.println(biblioteca.listaDeDocentesResponsables());
         
-        
+        // Prestamos vencidos
+            System.out.println("\n   Prestamos Vencidos:  ");
+           for (Libro unLibro : biblioteca.prestamosVencidos()) {
+           System.out.println("Libro: " + unLibro.getTitulo() + " - Socio: " + unLibro.ultimoPrestamo().getSocio().getNombre());
+           }
         
         
         
