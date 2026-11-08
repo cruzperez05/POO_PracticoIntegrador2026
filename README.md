@@ -29,12 +29,12 @@ a socios estudiantes y docentes.
 - Trello: https://trello.com/b/yz2X4Wa5/tp7gruponullpointers
 
 ## Estado
-- [ ] Socio / Prestamo
-- [ ] Estudiante / Docente
-- [ ] Libro
-- [ ] Biblioteca
-- [ ] LibroNoPrestadoException
-- [ ] GestionBiblioteca
+- [✔️] Socio / Prestamo
+- [✔️] Estudiante / Docente
+- [✔️] Libro
+- [✔️] Biblioteca
+- [✔️] LibroNoPrestadoException
+- [✔️] GestionBiblioteca
 
 ## Entrega
 Fecha límite: 09/11 – `NullPointers_PracticoIntegrador.zip`
