@@ -87,7 +87,7 @@ DEMOSTRACIÓN EN VIVO SUGERIDA FRENTE A LOS PROFESORES:
      • Hacer clic en "Ver socios" -> Muestra el listado numerado de socios.
      • Hacer clic en "Ver libros" -> Muestra los títulos y si están prestados.
 
-  2) AGREGAR UN NUEVO SOCIO (Persistencia de Alta):
+  2) AGREGAR UN NUEVO SOCIO (Persistencia de Alta en SQL Server):
      • Escribir en "DNI del socio": 6
      • Escribir en "Nombre y apellido": Ana Gomez
      • Escribir en "Área / Carrera": Lic. en Sistemas
@@ -115,32 +115,14 @@ DEMOSTRACIÓN EN VIVO SUGERIDA FRENTE A LOS PROFESORES:
        Se dispara y captura "LibroNoPrestadoException", informando en pantalla:
        "El libro Java no se puede devolver ya que se encuentra en la biblioteca".
 
-  6) QUITAR UN SOCIO (Persistencia de Baja):
+  6) QUITAR UN SOCIO (Persistencia de Baja en SQL Server):
      • Escribir en "DNI del socio": 6
      • Hacer clic en "Quitar socio" -> Verifica que no deba libros, lo elimina
        de la colección y lo borra de la tabla "Socios" en SQL Server.
 
 
 ================================================================================
-4. ¿FUNCIONA EN OTRAS COMPUTADORAS SI NO TIENEN SQL SERVER INSTALADO? (SÍ)
-================================================================================
-
-El conector (ConexionSQLServer.java) está preparado con un sistema híbrido:
-
-  • Si la PC TIENE SQL Server instalado (con la base de datos BibliotecaPOO):
-    Lee y guarda automáticamente en las tablas relacionales de SQL Server
-    (Socios, Libros y Prestamos) y mantiene sincronizado el archivo espejo
-    "Integrador_codigo/datos_respaldo.txt".
-
-  • Si un compañero descarga el proyecto desde GitHub y NO TIENE SQL Server:
-    Puede abrirlo directamente en BlueJ o IntelliJ y ejecutar "ProcesoVentana"
-    sin instalar nada extra. Al detectar que no hay servidor SQL local, el
-    programa lee y guarda todos los cambios (préstamos, devoluciones, altas y
-    bajas de socios) en "datos_respaldo.txt" sin arrojar ningún error.
-
-
-================================================================================
-5. CÓMO VER O REINICIAR LA BASE DE DATOS EN SQL SERVER
+4. CÓMO VER O REINICIAR LA BASE DE DATOS EN SQL SERVER
 ================================================================================
 
 • Diagrama Entidad-Relación:
